@@ -54,6 +54,7 @@ angular.module('app')
                     //template: '<div ng-controller="logoutController" ></div>',
                     controller: function($scope,$http,$state){
                         $http.post('/logout', {}).success(function (data) {
+                            alert('hell')
                             $state.go('access.signin');
                             }, function (x) {
                         });
@@ -72,6 +73,26 @@ angular.module('app')
                     url: '/dashboard',
                     templateUrl: 'dashboard',
                     controller : "AuthCheckCtrl"
+                })
+                .state('app.modules', {
+                    url: '/modules',
+                    template: '<div ui-view class="fade-in-up"></div>'
+                })
+                .state('app.modules.index', {
+                    url: '/index',
+                    templateUrl: 'modules/index',
+                    controller : "AuthCheckCtrl"
+                })
+                .state('app.modules.create', {
+                    url: '/create',
+                    templateUrl: 'modules/create',
+                    controller : "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/module-store.js']);
+                            }]
+                    }
                 })
                 .state('app.user', {
                     url: '/user',

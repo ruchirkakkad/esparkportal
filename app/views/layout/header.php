@@ -7,7 +7,7 @@
         <i class="glyphicon glyphicon-align-justify"></i>
     </button>
     <!-- brand -->
-    <a href="#/" class="navbar-brand text-lt">
+    <a href="#/app/dashboard" class="navbar-brand text-lt">
         <i class="fa fa-btc"></i>
         <img src="img/logo.png" alt="." class="hide">
         <span class="hidden-folded m-l-xs">{{app.name}}</span>
@@ -20,150 +20,200 @@
 <div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
 <!-- link and dropdown -->
 <ul class="nav navbar-nav hidden-sm">
-    <li class="dropdown" dropdown>
-        <a href class="dropdown-toggle" dropdown-toggle>
-            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>
-            <span>Organization</span> <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-            <li><a ui-sref=".user">Company Details</a></li>
-            <li><a href="#">Department Management</a></li>
-            <li><a href="#">Branch Management</a></li>
-            <li><a href="#">General Settings</a></li>
-            <li><a href="#">Work Shifts</a></li>
-            <li><a href="#">Policy Management</a></li>
-            <li><a href="#">Roles Management</a></li>
-        </ul>
-    </li>
-    <li class="dropdown" dropdown>
-        <a href class="dropdown-toggle" dropdown-toggle>
-            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>
-            <span>HRMS</span> <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#"></a></li>
-            <li><a href="#">Time Tracker <span class="arrow right"></span></a>
-                <ul class="dropdown-menu subdropdown-menu">
-                    <li><a href="#">Time log</a></li>
-                    <li><a href="#">Time-sheet</a></li>
-                    <li><a href="#">User wise Time-sheet</a></li>
-                    <li><a href="#">Date wise Time-sheet</a></li>
-                    <li><a href="#">Attendance Chart</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Employee Management <span class="arrow right"></span></a>
-                <ul class="dropdown-menu subdropdown-menu">
-                    <li><a href="#">View User</a></li>
-                    <li><a href="#">Add User</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Qualification<span class="arrow right"></span></a>
-                <ul class="dropdown-menu subdropdown-menu">
-                    <li><a href="#">Skills </a></li>
-                    <li><a href="#">Education</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Leave Management <span class="arrow right"></span></a>
-                <ul class="dropdown-menu subdropdown-menu">
-                    <li><a href="#">View Leave</a></li>
-                    <li><a href="#">Leave Request</a></li>
-                    <li><a href="#">Leave Report</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Payroll<span class="arrow right"></span></a>
-                <ul class="dropdown-menu subdropdown-menu">
-                    <li><a href="#">View Salary </a></li>
-                    <li><a href="#">Add Salary </a></li>
-                    <li><a href="#">Salary Slip</a></li>
-                    <li><a href="#">Salary Slip Generation</a></li>
-                    <li><a href="#">Salary Report</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Designation Management</a></li>
-            <li><a href="#">Expense Management</a></li>
-            <li><a href="#">Holiday Management <span class="arrow right"></span></a>
-                <ul class="dropdown-menu subdropdown-menu">
-                    <li><a href="#">View Holiday</a></li>
-                    <li><a href="#">Add Holiday</a></li>
-                </ul>
-            </li>
-            <li><a href="#">General Announcement</a></li>
-        </ul>
-    </li>
-    <li class="dropdown" dropdown>
-        <a href class="dropdown-toggle" dropdown-toggle>
-            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>
-            <span>Recruitment</span> <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Add Job Vacancy</a></li>
-            <li><a href="#">Add Candidate</a></li>
-            <li><a href="#">View Candidate</a></li>
-            <li><a href="#">Recruitment Process</a></li>
-        </ul>
-    </li>
-    <li class="dropdown" dropdown>
-        <a href class="dropdown-toggle" dropdown-toggle>
-            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>
-            <span>Marketing</span> <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#"></a></li>
-            <li><a href="#">Sheet Management</a></li>
-            <li><a href="#">Leads</a></li>
-            <li><a href="#">Leads Status Management</a></li>
-            <li><a href="#">Follow Up</a></li>
-            <li><a href="#">Other Leads<span class="arrow right"></span></a>
-                <ul class="dropdown-menu subdropdown-menu">
-                    <li><a href="#">Add Other Lead</a></li>
-                    <li><a href="#">View Other Lead</a></li>
-                    <li><a href="#">Follow Up Other Lead</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Country Management<span class="arrow right"></span></a>
-                <ul class="dropdown-menu subdropdown-menu">
-                    <li><a href="#">Country</a></li>
-                    <li><a href="#">State</a></li>
-                    <li><a href="#">Time Zone</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Category Management<span class="arrow right"></span></a>
-                <ul class="dropdown-menu subdropdown-menu">
-                    <li><a href="#">Add Category</a></li>
-                    <li><a href="#">View Category</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Sheet Assignment</a></li>
-            <li><a href="#">Email MArketing</a></li>
-
-            <li><a href="#">Email Marketing<span class="arrow right"></span></a>
-                <ul class="dropdown-menu subdropdown-menu">
-                    <li><a href="#">Group Management</a></li>
-                    <li><a href="#">Category</a></li>
-                    <li><a href="#">Upload Data Sheet</a></li>
-                    <li><a href="#">View Data Sheet</a></li>
-                </ul>
-            </li>
-        </ul>
-    </li>
-    <li class="dropdown" dropdown>
-        <a href class="dropdown-toggle" dropdown-toggle>
-            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>
-            <span>PMS</span> <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#">PMS</a></li>
-        </ul>
-    </li>
-    <li class="dropdown" dropdown>
-        <a href class="dropdown-toggle" dropdown-toggle>
-            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>
-            <span>Support</span> <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Support</a></li>
-        </ul>
-    </li>
+    <?php   $first_level = Module::where('parent_id','=',0)->get();
+    foreach($first_level as $key1 => $value1)
+    {
+        ?>
+        <li class="dropdown" dropdown>
+            <a href class="dropdown-toggle" dropdown-toggle>
+                <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>
+                <span><?= $value1['module_name']; ?></span> <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <?php
+                $second_level = Module::where('parent_id','=',$value1['module_id'])->get();
+                foreach($second_level as $key2 => $value2)
+                {
+                    $third_level = Module::where('parent_id','=',$value2['module_id'])->get();
+                    if(count($third_level) > 0)
+                    {
+                    ?>
+                        <li><a href="#"><?= $value2['module_name']; ?> <span class="arrow right"></span></a>
+                            <ul class="dropdown-menu subdropdown-menu">
+                                <?php
+                                    foreach($third_level as $key3 => $value3)
+                                    {
+                                        echo '<li><a href="#">'.$value3['module_name'].'</a></li>';
+                                    }
+                                ?>
+                            </ul>
+                        </li>
+                    <?php
+                    }
+                    else
+                    {
+                        echo '<li><a href="#">'.$value2['module_name'].'</a></li>';
+                    }
+                }
+                ?>
+            </ul>
+        </li>
+        <?php
+    }
+    ?>
+<!--    <li class="dropdown" dropdown>-->
+<!--        <a href class="dropdown-toggle" dropdown-toggle>-->
+<!--            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>-->
+<!--            <span>Organization</span> <span class="caret"></span>-->
+<!--        </a>-->
+<!--        <ul class="dropdown-menu" role="menu">-->
+<!--            <li><a ui-sref=".user">Company Details</a></li>-->
+<!--            <li><a href="#">Department Management</a></li>-->
+<!--            <li><a href="#">Branch Management</a></li>-->
+<!--            <li><a href="#">General Settings</a></li>-->
+<!--            <li><a href="#">Work Shifts</a></li>-->
+<!--            <li><a href="#">Policy Management</a></li>-->
+<!--            <li><a href="#">Roles Management</a></li>-->
+<!--        </ul>-->
+<!--    </li>-->
+<!--    <li class="dropdown" dropdown>-->
+<!--        <a href class="dropdown-toggle" dropdown-toggle>-->
+<!--            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>-->
+<!--            <span>HRMS</span> <span class="caret"></span>-->
+<!--        </a>-->
+<!--        <ul class="dropdown-menu" role="menu">-->
+<!--            <li><a href="#"></a></li>-->
+<!--            <li><a href="#">Time Tracker <span class="arrow right"></span></a>-->
+<!--                <ul class="dropdown-menu subdropdown-menu">-->
+<!--                    <li><a href="#">Time log</a></li>-->
+<!--                    <li><a href="#">Time-sheet</a></li>-->
+<!--                    <li><a href="#">User wise Time-sheet</a></li>-->
+<!--                    <li><a href="#">Date wise Time-sheet</a></li>-->
+<!--                    <li><a href="#">Attendance Chart</a></li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--            <li><a href="#">Employee Management <span class="arrow right"></span></a>-->
+<!--                <ul class="dropdown-menu subdropdown-menu">-->
+<!--                    <li><a href="#">View User</a></li>-->
+<!--                    <li><a href="#">Add User</a></li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--            <li><a href="#">Qualification<span class="arrow right"></span></a>-->
+<!--                <ul class="dropdown-menu subdropdown-menu">-->
+<!--                    <li><a href="#">Skills </a></li>-->
+<!--                    <li><a href="#">Education</a></li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--            <li><a href="#">Leave Management <span class="arrow right"></span></a>-->
+<!--                <ul class="dropdown-menu subdropdown-menu">-->
+<!--                    <li><a href="#">View Leave</a></li>-->
+<!--                    <li><a href="#">Leave Request</a></li>-->
+<!--                    <li><a href="#">Leave Report</a></li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--            <li><a href="#">Payroll<span class="arrow right"></span></a>-->
+<!--                <ul class="dropdown-menu subdropdown-menu">-->
+<!--                    <li><a href="#">View Salary </a></li>-->
+<!--                    <li><a href="#">Add Salary </a></li>-->
+<!--                    <li><a href="#">Salary Slip</a></li>-->
+<!--                    <li><a href="#">Salary Slip Generation</a></li>-->
+<!--                    <li><a href="#">Salary Report</a></li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--            <li><a href="#">Designation Management</a></li>-->
+<!--            <li><a href="#">Expense Management</a></li>-->
+<!--            <li><a href="#">Holiday Management <span class="arrow right"></span></a>-->
+<!--                <ul class="dropdown-menu subdropdown-menu">-->
+<!--                    <li><a href="#">View Holiday</a></li>-->
+<!--                    <li><a href="#">Add Holiday</a></li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--            <li><a href="#">General Announcement</a></li>-->
+<!--        </ul>-->
+<!--    </li>-->
+<!--    <li class="dropdown" dropdown>-->
+<!--        <a href class="dropdown-toggle" dropdown-toggle>-->
+<!--            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>-->
+<!--            <span>Recruitment</span> <span class="caret"></span>-->
+<!--        </a>-->
+<!--        <ul class="dropdown-menu" role="menu">-->
+<!--            <li><a href="#">Add Job Vacancy</a></li>-->
+<!--            <li><a href="#">Add Candidate</a></li>-->
+<!--            <li><a href="#">View Candidate</a></li>-->
+<!--            <li><a href="#">Recruitment Process</a></li>-->
+<!--        </ul>-->
+<!--    </li>-->
+<!--    <li class="dropdown" dropdown>-->
+<!--        <a href class="dropdown-toggle" dropdown-toggle>-->
+<!--            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>-->
+<!--            <span>Marketing</span> <span class="caret"></span>-->
+<!--        </a>-->
+<!--        <ul class="dropdown-menu" role="menu">-->
+<!--            <li><a href="#"></a></li>-->
+<!--            <li><a href="#">Sheet Management</a></li>-->
+<!--            <li><a href="#">Leads</a></li>-->
+<!--            <li><a href="#">Leads Status Management</a></li>-->
+<!--            <li><a href="#">Follow Up</a></li>-->
+<!--            <li><a href="#">Other Leads<span class="arrow right"></span></a>-->
+<!--                <ul class="dropdown-menu subdropdown-menu">-->
+<!--                    <li><a href="#">Add Other Lead</a></li>-->
+<!--                    <li><a href="#">View Other Lead</a></li>-->
+<!--                    <li><a href="#">Follow Up Other Lead</a></li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--            <li><a href="#">Country Management<span class="arrow right"></span></a>-->
+<!--                <ul class="dropdown-menu subdropdown-menu">-->
+<!--                    <li><a href="#">Country</a></li>-->
+<!--                    <li><a href="#">State</a></li>-->
+<!--                    <li><a href="#">Time Zone</a></li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--            <li><a href="#">Category Management<span class="arrow right"></span></a>-->
+<!--                <ul class="dropdown-menu subdropdown-menu">-->
+<!--                    <li><a href="#">Add Category</a></li>-->
+<!--                    <li><a href="#">View Category</a></li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--            <li><a href="#">Sheet Assignment</a></li>-->
+<!---->
+<!--            <li><a href="#">Email Marketing<span class="arrow right"></span></a>-->
+<!--                <ul class="dropdown-menu subdropdown-menu">-->
+<!--                    <li><a href="#">Group Management</a></li>-->
+<!--                    <li><a href="#">Category</a></li>-->
+<!--                    <li><a href="#">Upload Data Sheet</a></li>-->
+<!--                    <li><a href="#">View Data Sheet</a></li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </li>-->
+<!--    <li class="dropdown" dropdown>-->
+<!--        <a href class="dropdown-toggle" dropdown-toggle>-->
+<!--            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>-->
+<!--            <span>PMS</span> <span class="caret"></span>-->
+<!--        </a>-->
+<!--        <ul class="dropdown-menu" role="menu">-->
+<!--            <li><a href="#">PMS</a></li>-->
+<!--        </ul>-->
+<!--    </li>-->
+<!--    <li class="dropdown" dropdown>-->
+<!--        <a href class="dropdown-toggle" dropdown-toggle>-->
+<!--            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>-->
+<!--            <span>Support</span> <span class="caret"></span>-->
+<!--        </a>-->
+<!--        <ul class="dropdown-menu" role="menu">-->
+<!--            <li><a href="#">Support</a></li>-->
+<!--        </ul>-->
+<!--    </li>-->
+<!--    <li class="dropdown" dropdown>-->
+<!--        <a href class="dropdown-toggle" dropdown-toggle>-->
+<!--            <i class="fa fa-fw fa-plus visible-xs-inline-block"></i>-->
+<!--            <span>Modules</span> <span class="caret"></span>-->
+<!--        </a>-->
+<!--        <ul class="dropdown-menu" role="menu">-->
+<!--            <li><a href="#/app/modules/index">Modules</a></li>-->
+<!--            <li><a href="#">General Modules</a></li>-->
+<!--        </ul>-->
+<!--    </li>-->
 </ul>
 <!-- / link and dropdown -->
 
@@ -212,7 +262,7 @@
                     <img src="img/a0.jpg" alt="...">
                     <i class="on md b-white bottom"></i>
                 </span>
-            <span class="hidden-sm hidden-md">John.Smith</span> <b class="caret"></b>
+            <span class="hidden-sm hidden-md"><?php echo Auth::user()->firstname; ?></span> <b class="caret"></b>
         </a>
         <!-- dropdown -->
         <ul class="dropdown-menu animated fadeInRight w">

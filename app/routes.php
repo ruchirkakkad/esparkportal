@@ -29,6 +29,9 @@ Route::post('logout',['uses'=>'LoginController@logout']);
 //---------------Authentication ends
 
 
+Route::controller('general_modules','GeneralModulesController');
+Route::controller('modules','ModulesController');
+
 
 
 Route::get('app/user', function()
