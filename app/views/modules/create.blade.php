@@ -5,7 +5,7 @@
   <div ng-controller="ModuleCreateFormController">
     <div class="row">
       <div class="col-sm-6">
-        <form name="formValidate" class="form-horizontal form-validation">
+        <form name="formValidate" class="form-horizontal form-validation" novalidate>
           <div class="panel panel-default">
             <div class="panel-heading">
               <strong>Add Module</strong>
@@ -22,12 +22,9 @@
                 <label class="col-sm-3 control-label">Parent Module</label>
                 <div class="col-sm-9">
 
-                  <select class="form-control m-t" ng-init="" ng-model="parent_id" ng-options="key as value for (key , value) in parent_modules">
-                        <option value="">Select Parent</option>
-                        <?php foreach($modules as $key => $value) { ?>
-                            <option value="<?= $key; ?>"><?= $value; ?></option>
-                        <?php } ?>
-                    </select>
+                  <select ng-model="parent_id" class="form-control m-t" ng-options="selectedItem.module_id as selectedItem.module_name for selectedItem in parent_modules" ng-init="">
+                       <option value="">Select Parent</option>
+                   </select>
                 </div>
               </div>
               <div class="line line-dashed b-b line-lg pull-in"></div>

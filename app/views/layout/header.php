@@ -38,12 +38,12 @@
                     if(count($third_level) > 0)
                     {
                     ?>
-                        <li><a href="#"><?= $value2['module_name']; ?> <span class="arrow right"></span></a>
+                        <li><a href="<?= $value2["module_url"] ?>"><?= $value2['module_name']; ?> <span class="arrow right"></span></a>
                             <ul class="dropdown-menu subdropdown-menu">
                                 <?php
                                     foreach($third_level as $key3 => $value3)
                                     {
-                                        echo '<li><a href="#">'.$value3['module_name'].'</a></li>';
+                                        echo '<li><a href="'.$value3["module_url"].'">'.$value3['module_name'].'</a></li>';
                                     }
                                 ?>
                             </ul>
@@ -52,7 +52,7 @@
                     }
                     else
                     {
-                        echo '<li><a href="#">'.$value2['module_name'].'</a></li>';
+                        echo '<li><a href="'.$value2["module_url"].'">'.$value2['module_name'].'</a></li>';
                     }
                 }
                 ?>

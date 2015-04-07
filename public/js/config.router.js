@@ -52,11 +52,11 @@ angular.module('app')
                 .state('access.logout', {
                     url: '/logout',
                     //template: '<div ng-controller="logoutController" ></div>',
-                    controller: function($scope,$http,$state){
+                    controller: function ($scope, $http, $state) {
                         $http.post('/logout', {}).success(function (data) {
                             alert('hell')
                             $state.go('access.signin');
-                            }, function (x) {
+                        }, function (x) {
                         });
                     }
                 })
@@ -72,7 +72,7 @@ angular.module('app')
                 .state('app.dashboard', {
                     url: '/dashboard',
                     templateUrl: 'dashboard',
-                    controller : "AuthCheckCtrl"
+                    controller: "AuthCheckCtrl"
                 })
                 .state('app.modules', {
                     url: '/modules',
@@ -81,17 +81,58 @@ angular.module('app')
                 .state('app.modules.index', {
                     url: '/index',
                     templateUrl: 'modules/index',
-                    controller : "AuthCheckCtrl"
-                })
-                .state('app.modules.create', {
-                    url: '/create',
-                    templateUrl: 'modules/create',
-                    controller : "AuthCheckCtrl",
+                    controller: "AuthCheckCtrl",
                     resolve: {
                         deps: ['uiLoad',
                             function (uiLoad) {
                                 return uiLoad.load(['js/controllers/module-store.js']);
                             }]
+                    }
+                })
+                .state('app.modules.create', {
+                    url: '/create',
+                    templateUrl: 'modules/create',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/module-store.js']);
+                            }]
+                    }
+                })
+                .state('app.modules.edit', {
+                    url: '/edit/{id:[0-9]{1,4}}',
+                    templateUrl: 'modules/edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/module-store.js']);
+                            }]
+
+                    }
+                })
+                .state('app.modules.delete', {
+                    url: '/delete/{id:[0-9]{1,4}}',
+                    controller: function ($http, $state, $stateParams) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/modules/destroy/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    $state.go('app.modules.index');
+                                }
+                                if (data.code == '403') {
+                                    $state.go('app.modules.index');
+                                }
+                            });
                     }
                 })
                 .state('app.user', {
