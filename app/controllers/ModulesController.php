@@ -36,8 +36,7 @@ class ModulesController extends \BaseController
 
     public function getCreate()
     {
-        $data['modules'] = Module::lists('module_name', 'module_id');
-        return View::make('modules.create', $data);
+        return View::make('modules.create');
     }
 
 

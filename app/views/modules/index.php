@@ -2,7 +2,10 @@
   <h1 class="m-n font-thin h3" >Modules</h1>
 </div>
 
-<div class="wrapper-md" ng-init="">
+
+
+<div class="wrapper-md" ng-controller="ModulesController">
+    <div flash-message="5000" ></div>
       <a href="#/app/modules/create">
       <button class="btn btn-sm btn-primary btn-addon pull-right m-xs">
       <i class="fa fa-plus"></i>Add

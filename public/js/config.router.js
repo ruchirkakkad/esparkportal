@@ -54,7 +54,6 @@ angular.module('app')
                     //template: '<div ng-controller="logoutController" ></div>',
                     controller: function ($scope, $http, $state) {
                         $http.post('/logout', {}).success(function (data) {
-                            alert('hell')
                             $state.go('access.signin');
                         }, function (x) {
                         });
@@ -114,7 +113,7 @@ angular.module('app')
                 })
                 .state('app.modules.delete', {
                     url: '/delete/{id:[0-9]{1,4}}',
-                    controller: function ($http, $state, $stateParams) {
+                    controller: function ($http, $state, $stateParams,Flash) {
 
                         $http.post('checkAuthentication', {})
                             .success(function (data) {
@@ -127,10 +126,201 @@ angular.module('app')
                         $http.get('/modules/destroy/' + $stateParams.id)
                             .success(function (data) {
                                 if (data.code == '200') {
+                                    var message = '<strong>Delete!</strong> You successfully deleted the module.';
+                                    Flash.create('success', message);
                                     $state.go('app.modules.index');
                                 }
                                 if (data.code == '403') {
                                     $state.go('app.modules.index');
+                                }
+                            });
+                    }
+                })
+                .state('app.marketing_countries', {
+                    url: '/marketing_countries',
+                    template: '<div ui-view  ng-controller="MarketingCountriesController" class="fade-in-right-big"></div>'
+                })
+                .state('app.marketing_countries.index', {
+                    url: '/index',
+                    templateUrl: 'marketing_countries/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/marketing_countries.js']);
+                            }]
+                    }
+                })
+                .state('app.marketing_countries.create', {
+                    url: '/create',
+                    templateUrl: 'marketing_countries/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/marketing_countries.js']);
+                            }]
+                    }
+                })
+                .state('app.marketing_countries.edit', {
+                    url: '/edit/{id:[0-9]{1,4}}',
+                    templateUrl: 'marketing_countries/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/marketing_countries.js']);
+                            }]
+
+                    }
+                })
+                .state('app.marketing_countries.delete', {
+                    url: '/delete/{id:[0-9]{1,4}}',
+                    controller: function ($http, $state, $stateParams,Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/marketing_countries/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.marketing_countries.index');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.marketing_countries.index');
+                                }
+                            });
+                    }
+                })
+                .state('app.timezones', {
+                    url: '/timezones',
+                    template: '<div ui-view  ng-controller="TimezonesController" class="fade-in-right-big"></div>'
+                })
+                .state('app.timezones.index', {
+                    url: '/index',
+                    templateUrl: 'timezones/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/timezones.js']);
+                            }]
+                    }
+                })
+                .state('app.timezones.create', {
+                    url: '/create',
+                    templateUrl: 'timezones/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/timezones.js']);
+                            }]
+                    }
+                })
+                .state('app.timezones.edit', {
+                    url: '/edit/{id:[0-9]{1,4}}',
+                    templateUrl: 'timezones/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/timezones.js']);
+                            }]
+
+                    }
+                })
+                .state('app.timezones.delete', {
+                    url: '/delete/{id:[0-9]{1,4}}',
+                    controller: function ($http, $state, $stateParams,Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/timezones/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.timezones.index');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.timezones.index');
+                                }
+                            });
+                    }
+                })
+                .state('app.marketing_states', {
+                    url: '/marketing_states',
+                    template: '<div ui-view  ng-controller="MarketingStatesController" class="fade-in-right-big"></div>'
+                })
+                .state('app.marketing_states.index', {
+                    url: '/index',
+                    templateUrl: 'marketing_states/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/marketing_states.js']);
+                            }]
+                    }
+                })
+                .state('app.marketing_states.create', {
+                    url: '/create',
+                    templateUrl: 'marketing_states/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/marketing_states.js']);
+                            }]
+                    }
+                })
+                .state('app.marketing_states.edit', {
+                    url: '/edit/{id:[0-9]{1,4}}',
+                    templateUrl: 'marketing_states/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/marketing_states.js']);
+                            }]
+
+                    }
+                })
+                .state('app.marketing_states.delete', {
+                    url: '/delete/{id:[0-9]{1,4}}',
+                    controller: function ($http, $state, $stateParams,Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/marketing_states/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.marketing_states.index');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.marketing_states.index');
                                 }
                             });
                     }

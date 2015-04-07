@@ -11,6 +11,7 @@
     {{ Html::style('css/font-awesome.min.css') }}
     {{ Html::style('css/simple-line-icons.css') }}
     {{ Html::style('css/font.css') }}
+
     {{ Html::style('css/app.css') }}
     {{ Html::style('css/newcss.css') }}
 </head>
@@ -64,6 +65,7 @@
 {{ Html::script('js/directives/ui-shift.js'); }}
 {{ Html::script('js/directives/ui-toggleclass.js'); }}
 {{ Html::script('js/directives/ui-validate.js'); }}
+{{ Html::script('js/angular-flash.js'); }}
 {{ Html::script('js/controllers/bootstrap.js'); }}
 <!-- Lazy loading -->
 </body>

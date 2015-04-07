@@ -10,9 +10,8 @@ app.factory('ModuleService', function ModuleService($http) {
     }
 });
 
-
-app.controller('ModuleCreateFormController', ['$scope', '$http', '$state','ModuleService',
-    function ($scope, $http, $state,ModuleService) {
+app.controller('ModuleCreateFormController', ['$scope', '$http', '$state','ModuleService','Flash',
+    function ($scope, $http, $state,ModuleService,Flash) {
 
         $scope.module_name = '';
         $scope.parent_id = '';
@@ -42,6 +41,8 @@ app.controller('ModuleCreateFormController', ['$scope', '$http', '$state','Modul
                     var data = (data);
 
                     if (data.code == '200') {
+
+                        Flash.create('success', 'Created');
                         $state.go('app.modules.index');
                     }
                     if (data.code == '403') {
@@ -54,8 +55,8 @@ app.controller('ModuleCreateFormController', ['$scope', '$http', '$state','Modul
         };
     }]);
 
-app.controller('ModuleEditFormController', ['$scope', '$http', '$state', '$stateParams','ModuleService',
-    function ($scope, $http, $state, $stateParams,ModuleService) {
+app.controller('ModuleEditFormController', ['$scope', '$http', '$state', '$stateParams','ModuleService','Flash',
+    function ($scope, $http, $state, $stateParams,ModuleService,Flash) {
 
 
         $scope.module_name = '';
@@ -101,6 +102,9 @@ app.controller('ModuleEditFormController', ['$scope', '$http', '$state', '$state
                     var data = (data);
                     console.log(data)
                     if (data.code == '200') {
+
+                        //Flash.add('success', 'Edited', 'custom-class')
+                        Flash.create('success', 'Edited');
                         $state.go('app.modules.index');
                     }
                     if (data.code == '403') {
@@ -112,6 +116,15 @@ app.controller('ModuleEditFormController', ['$scope', '$http', '$state', '$state
                     //$scope.authError = 'Server Error';
                 });
         };
+
+
+    }]);
+
+
+
+
+app.controller('ModulesController', ['$scope', '$http', '$state','ModuleService','Flash',
+    function ($scope, $http, $state,ModuleService,Flash) {
 
 
     }]);
