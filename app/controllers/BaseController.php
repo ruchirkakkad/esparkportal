@@ -8,6 +8,10 @@ class BaseController extends Controller {
 	 * @return void
 	 */
 
+    public function __construct(){
+
+    }
+
 	protected function setupLayout()
 	{
 		if ( ! is_null($this->layout))

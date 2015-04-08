@@ -100,7 +100,7 @@ angular.module('app')
                     }
                 })
                 .state('app.modules.edit', {
-                    url: '/edit/{id:[0-9]{1,4}}',
+                    url: '/edit/{id}',
                     templateUrl: 'modules/edit',
                     controller: "AuthCheckCtrl",
                     resolve: {
@@ -112,7 +112,7 @@ angular.module('app')
                     }
                 })
                 .state('app.modules.delete', {
-                    url: '/delete/{id:[0-9]{1,4}}',
+                    url: '/delete/{id}',
                     controller: function ($http, $state, $stateParams,Flash) {
 
                         $http.post('checkAuthentication', {})
@@ -163,7 +163,7 @@ angular.module('app')
                     }
                 })
                 .state('app.marketing_countries.edit', {
-                    url: '/edit/{id:[0-9]{1,4}}',
+                    url: '/edit/{id}',
                     templateUrl: 'marketing_countries/edit-edit',
                     controller: "AuthCheckCtrl",
                     resolve: {
@@ -175,7 +175,7 @@ angular.module('app')
                     }
                 })
                 .state('app.marketing_countries.delete', {
-                    url: '/delete/{id:[0-9]{1,4}}',
+                    url: '/delete/{id}',
                     controller: function ($http, $state, $stateParams,Flash) {
 
                         $http.post('checkAuthentication', {})
@@ -226,7 +226,7 @@ angular.module('app')
                     }
                 })
                 .state('app.timezones.edit', {
-                    url: '/edit/{id:[0-9]{1,4}}',
+                    url: '/edit/{id}',
                     templateUrl: 'timezones/edit-edit',
                     controller: "AuthCheckCtrl",
                     resolve: {
@@ -238,7 +238,7 @@ angular.module('app')
                     }
                 })
                 .state('app.timezones.delete', {
-                    url: '/delete/{id:[0-9]{1,4}}',
+                    url: '/delete/{id}',
                     controller: function ($http, $state, $stateParams,Flash) {
 
                         $http.post('checkAuthentication', {})
@@ -258,6 +258,69 @@ angular.module('app')
                                 if (data.code == '403') {
                                     Flash.create('danger', data.msg);
                                     $state.go('app.timezones.index');
+                                }
+                            });
+                    }
+                })
+                .state('app.marketing_categories', {
+                    url: '/marketing_categories',
+                    template: '<div ui-view  ng-controller="MarketingCategoriesController" class="fade-in-right-big"></div>'
+                })
+                .state('app.marketing_categories.index', {
+                    url: '/index',
+                    templateUrl: 'marketing_categories/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/marketing_categories.js']);
+                            }]
+                    }
+                })
+                .state('app.marketing_categories.create', {
+                    url: '/create',
+                    templateUrl: 'marketing_categories/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/marketing_categories.js']);
+                            }]
+                    }
+                })
+                .state('app.marketing_categories.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'marketing_categories/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/marketing_categories.js']);
+                            }]
+
+                    }
+                })
+                .state('app.marketing_categories.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams,Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/marketing_categories/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.marketing_categories.index');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.marketing_categories.index');
                                 }
                             });
                     }
@@ -289,7 +352,7 @@ angular.module('app')
                     }
                 })
                 .state('app.marketing_states.edit', {
-                    url: '/edit/{id:[0-9]{1,4}}',
+                    url: '/edit/{id}',
                     templateUrl: 'marketing_states/edit-edit',
                     controller: "AuthCheckCtrl",
                     resolve: {
@@ -301,7 +364,7 @@ angular.module('app')
                     }
                 })
                 .state('app.marketing_states.delete', {
-                    url: '/delete/{id:[0-9]{1,4}}',
+                    url: '/delete/{id}',
                     controller: function ($http, $state, $stateParams,Flash) {
 
                         $http.post('checkAuthentication', {})
@@ -638,7 +701,7 @@ angular.module('app')
                     templateUrl: 'tpl/mail.list.html'
                 })
                 .state('app.mail.detail', {
-                    url: '/{mailId:[0-9]{1,4}}',
+                    url: '/{mailId}',
                     templateUrl: 'tpl/mail.detail.html'
                 })
                 .state('app.mail.compose', {

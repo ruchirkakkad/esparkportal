@@ -32,9 +32,15 @@ Route::post('logout',['uses'=>'LoginController@logout']);
 Route::controller('general_modules','GeneralModulesController');
 Route::controller('modules','ModulesController');
 
+//---------------Marketing-----------------
 Route::controller('marketing_countries','MarketingCountriesController');
 Route::controller('marketing_states','MarketingStatesController');
+Route::controller('marketing_categories','MarketingCategoriesController');
 Route::controller('timezones','TimezonesController');
+
+Route::controller('sheets','SheetsController');
+
+//---------------Marketing ends--------------------
 
 Route::get('app/user', function()
 {

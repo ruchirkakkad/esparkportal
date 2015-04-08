@@ -16,8 +16,9 @@ class ModulesController extends \BaseController
         $returndata = json_decode(json_encode($abc), true);
         foreach ($returndata as $key => $val) {
             foreach ($val as $key1 => $val1) {
-                $returndata[$key][$key1]['edit'] = "<a href='#/app/modules/edit/$val1[module_id]'><button class='btn m-b-xs btn-sm btn-primary'><i class='fa fa-edit'></i></button></a>";
-                $returndata[$key][$key1]['delete'] = "<a href='#/app/modules/delete/$val1[module_id]'><button class='btn btn-sm btn-icon btn-danger'><i class='fa fa-trash-o'></i></button></a>";
+                $id = Helper::simple_encrypt($val1['module_id']);
+                $returndata[$key][$key1]['edit'] = "<a href='#/app/modules/edit/$id'><button class='btn m-b-xs btn-sm btn-primary'><i class='fa fa-edit'></i></button></a>";
+                $returndata[$key][$key1]['delete'] = "<a href='#/app/modules/delete/$id'><button class='btn btn-sm btn-icon btn-danger'><i class='fa fa-trash-o'></i></button></a>";
 //                $returndata[$key][$key1]['delete'] = "<a href='#/app/modules/delete/$val1[module_id]'><button class='btn btn-sm btn-icon btn-danger'><i class='fa fa-trash-o'></i></button></a>";
             }
 
@@ -79,12 +80,17 @@ class ModulesController extends \BaseController
 
     public function postFind($id)
     {
-        return Response::json(Module::find($id));
+        $id = Helper::simple_decrypt($id);
+        $data = Module::find($id);
+        $data->modules_id = Helper::simple_encrypt($data->modules_id);
+        return Response::json($data);
+
     }
 
 
     public function postUpdate($id)
     {
+        $id = Helper::simple_decrypt($id);
         $module = Module::find($id);
         $module->module_name = Input::get('module_name');
         $module->module_url = Input::get('module_url');
@@ -110,6 +116,7 @@ class ModulesController extends \BaseController
 
     public function getDestroy($id)
     {
+        $id = Helper::simple_decrypt($id);
         $save_module =  Module::destroy($id);
         if ($save_module) {
             return Response::json([

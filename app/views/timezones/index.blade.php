@@ -15,7 +15,7 @@
   <div class="panel panel-default">
 
     <div class="panel-heading">
-      Countries
+      Timezones
     </div>
     <div class="table-responsive">
       <table ui-jq="dataTable" ui-options="{

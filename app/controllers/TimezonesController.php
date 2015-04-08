@@ -15,8 +15,9 @@ class TimezonesController extends \BaseController {
         $returndata = json_decode(json_encode($data), true);
         foreach ($returndata as $key => $val) {
             foreach ($val as $key1 => $val1) {
-                $returndata[$key][$key1]['edit'] = "<a href='#/app/timezones/edit/$val1[timezones_id]'><button class='btn m-b-xs btn-sm btn-primary'><i class='fa fa-edit'></i></button></a>";
-                $returndata[$key][$key1]['delete'] = "<a href='#/app/timezones/delete/$val1[timezones_id]'><button class='btn btn-sm btn-icon btn-danger'><i class='fa fa-trash-o'></i></button></a>";
+                $id = Helper::simple_encrypt($val1['timezones_id']);
+                $returndata[$key][$key1]['edit'] = "<a href='#/app/timezones/edit/$id'><button class='btn m-b-xs btn-sm btn-primary'><i class='fa fa-edit'></i></button></a>";
+                $returndata[$key][$key1]['delete'] = "<a href='#/app/timezones/delete/$id'><button class='btn btn-sm btn-icon btn-danger'><i class='fa fa-trash-o'></i></button></a>";
             }
         }
         return $returndata;
@@ -60,11 +61,15 @@ class TimezonesController extends \BaseController {
 
     public function postFindEdit($id)
     {
-        return Response::json(Timezone::find($id));
+        $id = Helper::simple_decrypt($id);
+        $data = Timezone::find($id);
+        $data->timezones_id = Helper::simple_encrypt($data->timezones_id);
+        return Response::json($data);
     }
 
     public function postUpdateEdit($id)
     {
+        $id = Helper::simple_decrypt($id);
         $country = Timezone::find($id);
         $country->timezones_name = Input::get('timezones_name');
 
@@ -88,6 +93,7 @@ class TimezonesController extends \BaseController {
     public function getDestroyDelete($id)
     {
 //        return Request::segment(2);
+        $id = Helper::simple_decrypt($id);
         $country = Timezone::find($id);
 
         $save = $country->delete();
