@@ -16,17 +16,23 @@ class CreateSheetsTable extends Migration {
 		{
 			$table->increments('id');
             $table->date('input_date');
-            $table->integer('marketing_countries_id');
+
+
+            $table->unsignedInteger('marketing_countries_id');
             $table->foreign('marketing_countries_id')
                 ->references('marketing_countries_id')->on('marketing_countries')
                 ->onDelete('cascade');
-            $table->integer('marketing_categories_id');
+
+
+            $table->unsignedInteger('marketing_categories_id');
             $table->foreign('marketing_categories_id')
                 ->references('marketing_categories_id')->on('marketing_categories')
                 ->onDelete('cascade');
-            $table->integer('users_id');
-            $table->foreign('users_id')
-                    ->references('users_id')->on('users')
+
+
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')
+                    ->references('user_id')->on('users')
                     ->onDelete('cascade');
 
 
