@@ -37,7 +37,7 @@ Route::controller('marketing_countries','MarketingCountriesController');
 Route::controller('marketing_states','MarketingStatesController');
 Route::controller('marketing_categories','MarketingCategoriesController');
 Route::controller('timezones','TimezonesController');
-
+Route::controller('leads_statuses', 'LeadsStatusesController');
 Route::controller('sheets','SheetsController');
 
 //---------------Marketing ends--------------------

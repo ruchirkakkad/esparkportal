@@ -10,7 +10,7 @@ class MarketingCategoriesController extends \BaseController {
 
     public function getIndexdataView()
     {
-        $data1 = MarketingCategory::select('marketing_categories_id', '')->get();
+        $data1 = MarketingCategory::select('marketing_categories_id', 'marketing_categories_name')->get();
         $data['aaData'] = $data1;
         $returndata = json_decode(json_encode($data), true);
         foreach ($returndata as $key => $val) {
