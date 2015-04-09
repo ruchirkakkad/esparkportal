@@ -81,7 +81,7 @@ class ModulesController extends \BaseController
     public function postFind($id)
     {
 
-        $id = Helper::simple_decrypt($id);
+        $id = Helper::simple_decrypt($id); 
         $data = Module::find($id);
         $data->module_id = Helper::simple_encrypt($data->module_id);
         return Response::json($data);

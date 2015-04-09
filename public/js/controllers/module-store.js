@@ -5,7 +5,7 @@
 app.factory('ModuleService', function ModuleService($http) {
     return {
         parentdata: function parentdata() {
-            return $http.post('/modules/parentdata');
+            return $http.post('modules/parentdata');
         }
     }
 });
