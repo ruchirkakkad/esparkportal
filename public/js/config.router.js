@@ -262,6 +262,68 @@ angular.module('app')
                             });
                     }
                 })
+                .state('app.leads_statuses', {
+                    url: '/leads_statuses',
+                    template: '<div ui-view  ng-controller="TimezonesController" class="fade-in-right-big"></div>'
+                })
+                .state('app.leads_statuses.index', {
+                    url: '/index',
+                    templateUrl: 'leads_statuses/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/leads_statuses.js']);
+                            }]
+                    }
+                })
+                .state('app.leads_statuses.create', {
+                    url: '/create',
+                    templateUrl: 'leads_statuses/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/leads_statuses.js']);
+                            }]
+                    }
+                })
+                .state('app.leads_statuses.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'leads_statuses/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/leads_statuses.js']);
+                            }]
+                    }
+                })
+                .state('app.leads_statuses.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams,Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/leads_statuses/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.leads_statuses.index');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.leads_statuses.index');
+                                }
+                            });
+                    }
+                })
                 .state('app.sheets', {
                     url: '/sheets',
                     template: '<div ui-view  ng-controller="SheetsController" class="fade-in-right-big"></div>'
