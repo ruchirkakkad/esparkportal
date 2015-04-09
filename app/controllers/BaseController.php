@@ -9,7 +9,7 @@ class BaseController extends Controller {
 	 */
 
     public function __construct(){
-
+        date_default_timezone_set('Asia/Calcutta');
     }
 
 	protected function setupLayout()

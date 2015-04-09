@@ -7,16 +7,16 @@ app.controller('MarketingStatesController', ['$scope', '$http', '$state', 'Flash
 
         $scope.data = {
             'marketing_states_name': '',
-            'marketing_states_id': '',
-            'marketing_countries_id': '',
+            'marketing_states_id': null,
+            'marketing_countries_id': null,
             'timezones_id': null
         };
 
         $scope.resetData = function() {
             $scope.data = {
                 'marketing_states_name': '',
-                'marketing_states_id': '',
-                'marketing_countries_id': '',
+                'marketing_states_id': null,
+                'marketing_countries_id': null,
                 'timezones_id': null
             };
 

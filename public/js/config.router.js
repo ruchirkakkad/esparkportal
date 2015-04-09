@@ -262,6 +262,81 @@ angular.module('app')
                             });
                     }
                 })
+                .state('app.sheets', {
+                    url: '/sheets',
+                    template: '<div ui-view  ng-controller="SheetsController" class="fade-in-right-big"></div>'
+                })
+                .state('app.sheets.index', {
+                    url: '/index',
+                    templateUrl: 'sheets/index-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/sheets.js']);
+                            }]
+                    }
+                })
+                .state('app.sheets.country-sheets', {
+                    url: '/country-sheets/{id}',
+                    templateUrl: 'sheets/country-sheets',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/sheets.js']);
+                            }]
+
+                    }
+                })
+                .state('app.sheets.create', {
+                    url: '/create',
+                    templateUrl: 'sheets/create-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/sheets.js']);
+                            }]
+                    }
+                })
+                .state('app.sheets.edit', {
+                    url: '/edit/{id}',
+                    templateUrl: 'sheets/edit-edit',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/sheets.js']);
+                            }]
+
+                    }
+                })
+                .state('app.sheets.delete', {
+                    url: '/delete/{id}',
+                    controller: function ($http, $state, $stateParams,Flash) {
+
+                        $http.post('checkAuthentication', {})
+                            .success(function (data) {
+                                if (data == '0') {
+                                    $state.go('access.signin');
+                                }
+                            }, function (x) {
+                            });
+
+                        $http.get('/sheets/destroy-delete/' + $stateParams.id)
+                            .success(function (data) {
+                                if (data.code == '200') {
+                                    Flash.create('success', data.msg);
+                                    $state.go('app.sheets.index');
+                                }
+                                if (data.code == '403') {
+                                    Flash.create('danger', data.msg);
+                                    $state.go('app.sheets.index');
+                                }
+                            });
+                    }
+                })
                 .state('app.marketing_categories', {
                     url: '/marketing_categories',
                     template: '<div ui-view  ng-controller="MarketingCategoriesController" class="fade-in-right-big"></div>'

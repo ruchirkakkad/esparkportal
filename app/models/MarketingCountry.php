@@ -12,4 +12,14 @@ class MarketingCountry extends \Eloquent {
 
     protected $primaryKey = "marketing_countries_id";
 
+    public function sheets()
+    {
+        return $this->hasMany('Sheet','marketing_countries_id');
+    }
+
+    public function marketing_states()
+    {
+        return $this->hasMany('MarketingState','marketing_states_id');
+    }
+
 }

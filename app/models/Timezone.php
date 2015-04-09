@@ -12,4 +12,9 @@ class Timezone extends \Eloquent {
 
     protected $primaryKey = "timezones_id";
 
+    public function marketing_states()
+    {
+        return $this->hasMany('MarketingState','marketing_states_id');
+    }
+
 }

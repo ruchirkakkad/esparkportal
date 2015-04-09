@@ -12,4 +12,9 @@ class MarketingCategory extends \Eloquent {
 
     protected $primaryKey = "marketing_categories_id";
 
+
+    public function sheets()
+    {
+        return $this->hasMany('Sheet','marketing_categories_id');
+    }
 }
