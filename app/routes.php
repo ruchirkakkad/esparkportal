@@ -39,7 +39,7 @@ Route::controller('marketing_categories','MarketingCategoriesController');
 Route::controller('timezones','TimezonesController');
 Route::controller('leads_statuses', 'LeadsStatusesController');
 Route::controller('sheets','SheetsController');
-
+Route::controller('marketing_datas', 'MarketingDatasController');
 //---------------Marketing ends--------------------
 
 Route::get('app/user', function()

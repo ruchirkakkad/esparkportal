@@ -14,8 +14,10 @@ class CreateLeadsStatusesTable extends Migration {
 	{
 		Schema::create('leads_statuses', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->timestamps();
+			$table->increments('leads_statuses_id');
+            $table->string('leads_statuses_name');
+            $table->timestamps();
+            $table->softDeletes();
 		});
 	}
 

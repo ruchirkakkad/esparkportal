@@ -9,10 +9,16 @@ class SheetsController extends \BaseController {
 
     public function postCountriesCategoriesView()
     {
+
+        $data= MarketingCountry::join('marketing_states','marketing_states.marketing_countries_id','=','marketing_countries.marketing_countries_id')
+                            ->join('marketing_datas','marketing_states.marketing_states_id','=','marketing_datas.marketing_states_id')
+                            ->where('marketing_countries.marketing_countries_id','=',1)
+                            ->groupBy('marketing_countries.marketing_countries_id')->count();
+        dd($data);
         $data['countries'] = MarketingCountry::select('marketing_countries_name', 'marketing_countries_id')->get();
         foreach($data['countries'] as $key => $val)
         {
-            $data['countries'][$key]->sheets_count = count($val->sheets()->get());
+            $data['countries'][$key]->sheets_count = count($val->sheets);
             $data['countries'][$key]->marketing_countries_id = Helper::simple_encrypt($data['countries'][$key]->marketing_countries_id);
         }
         $data['categories'] = MarketingCategory::select('marketing_categories_name', 'marketing_categories_id')->get();

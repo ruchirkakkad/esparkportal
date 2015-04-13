@@ -264,7 +264,7 @@ angular.module('app')
                 })
                 .state('app.leads_statuses', {
                     url: '/leads_statuses',
-                    template: '<div ui-view  ng-controller="TimezonesController" class="fade-in-right-big"></div>'
+                    template: '<div ui-view  ng-controller="LeadStatusesController" class="fade-in-right-big"></div>'
                 })
                 .state('app.leads_statuses.index', {
                     url: '/index',
@@ -324,9 +324,31 @@ angular.module('app')
                             });
                     }
                 })
-                .state('app.sheets', {
-                    url: '/sheets',
-                    template: '<div ui-view  ng-controller="SheetsController" class="fade-in-right-big"></div>'
+                .state('app.marketing_datas', {
+                    url: '/marketing_datas',
+                    template: '<div ui-view  ng-controller="MarketingDatasController" class="fade-in-right-big"></div>'
+                })
+                .state('app.marketing_datas.create-one-add', {
+                    url: '/create-one',
+                    templateUrl: 'marketing_datas/create-one-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/marketing_datas.js']);
+                            }]
+                    }
+                })
+                .state('app.marketing_datas.create-two-add', {
+                    url: '/create-two-add/{id}',
+                    templateUrl: 'marketing_datas/create-two-add',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/marketing_datas.js']);
+                            }]
+                    }
                 })
                 .state('app.sheets.index', {
                     url: '/index',

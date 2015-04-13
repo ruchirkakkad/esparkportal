@@ -27,4 +27,9 @@ class MarketingState extends \Eloquent {
         return $this->belongsTo('Timezone', 'timezones_id', 'timezones_id');
     }
 
+    public function marketing_datas()
+    {
+        return $this->hasMany('MarketingData', 'marketing_datas_id');
+    }
+
 }

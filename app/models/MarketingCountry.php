@@ -19,7 +19,7 @@ class MarketingCountry extends \Eloquent {
 
     public function marketing_states()
     {
-        return $this->hasMany('MarketingState','marketing_states_id');
+        return $this->hasMany('MarketingState','marketing_countries_id');
     }
 
 }

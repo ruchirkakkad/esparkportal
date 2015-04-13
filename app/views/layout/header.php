@@ -8,9 +8,10 @@
     </button>
     <!-- brand -->
     <a href="#/app/dashboard" class="navbar-brand text-lt">
-        <i class="fa fa-btc"></i>
-        <img src="img/logo.png" alt="." class="hide">
-        <span class="hidden-folded m-l-xs">{{app.name}}</span>
+<!--        <i class="fa fa-btc"></i>-->
+        <span class="hidden-folded m-l-xs"><img src="img/logo3.png" alt="." width="110px" height="100px"></span>
+
+
     </a>
     <!-- / brand -->
 </div>

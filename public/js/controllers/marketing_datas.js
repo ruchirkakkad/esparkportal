@@ -2,29 +2,39 @@
  * Created by ruchir on 4/7/2015.
  */
 
-app.controller('SheetsController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope',
+app.controller('MarketingDatasController', ['$scope', '$http', '$state', 'Flash', '$stateParams', '$rootScope',
     function ($scope, $http, $state, Flash, $stateParams, $rootScope) {
 
         $scope.data = {
-            'input_date': null,
-            'sheets_id': '',
-            'marketing_countries_id': null,
+            'marketing_datas_id': null,
+            'owner_name': '',
+            'company_name': null,
+            'website': null,
+            'phone': null,
+            'email': null,
+            'marketing_states_id': null,
             'marketing_categories_id': null,
-            'user_id': ''
+            'user_id': null,
+            'leads_statuses_id': null
         };
 
         $scope.resetData = function() {
             $scope.data = {
-                'input_date': null,
-                'sheets_id': '',
-                'marketing_countries_id': null,
+                'marketing_datas_id': null,
+                'owner_name': '',
+                'company_name': null,
+                'website': null,
+                'phone': null,
+                'email': '',
+                'marketing_states_id': null,
                 'marketing_categories_id': null,
-                'user_id': ''
+                'user_id': null,
+                'leads_statuses_id': null
             };
 
 
-            $http.post('sheets/countries-categories-add', {}).success(function (data) {
-                $scope.data.countries = data.countries;
+            $http.post('marketing_datas/states-categories-add/'+ $stateParams.id, {}).success(function (data) {
+                $scope.data.states = data.states;
                 $scope.data.categories = data.categories;
             }, function (x) {
                 Flash.create('danger', 'Server Error');
@@ -34,9 +44,14 @@ app.controller('SheetsController', ['$scope', '$http', '$state', 'Flash', '$stat
 
         $scope.create = function () {
             console.log($scope.data);
-            $http.post('sheets/store-add', {
-                input_date : $scope.data.input_date,
-                marketing_countries_id : $scope.data.marketing_countries_id,
+            $scope.errors = [];
+            $http.post('marketing_datas/store-add', {
+                owner_name : $scope.data.owner_name,
+                company_name : $scope.data.company_name,
+                website : $scope.data.website,
+                phone : $scope.data.phone,
+                email : $scope.data.email,
+                marketing_states_id : $scope.data.marketing_states_id,
                 marketing_categories_id : $scope.data.marketing_categories_id
             }).success(function (data) {
 
@@ -45,10 +60,11 @@ app.controller('SheetsController', ['$scope', '$http', '$state', 'Flash', '$stat
                 if (data.code == '200') {
 
                     Flash.create('success', data.msg);
-                    $state.go('app.sheets.index');
+                    //$state.go('app.marketing_datas.index');
                 }
                 if (data.code == '403') {
-                    Flash.create('danger', data.msg);
+                    $scope.errors = data.result;
+                    //Flash.create('danger', data.msg);
                 }
             }, function (x) {
                 Flash.create('danger', 'Server Error');
@@ -57,7 +73,7 @@ app.controller('SheetsController', ['$scope', '$http', '$state', 'Flash', '$stat
 
         $scope.getcountries = function () {
             console.log($scope.data);
-            $http.post('sheets/countries-categories-view', {}).success(function (data) {
+            $http.post('marketing_datas/countries-add', {}).success(function (data) {
                 $scope.data.countries = data.countries;
                 $scope.data.categories = data.categories;
             }, function (x) {
