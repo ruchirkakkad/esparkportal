@@ -14,6 +14,7 @@
 
     {{ Html::style('css/app.css') }}
     {{ Html::style('css/newcss.css') }}
+    {{ Html::style('vendor/jquery/datatables/dataTables.tableTools.min.css') }}
 </head>
 <body ng-controller="AppCtrl">
 <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':false, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view>
@@ -45,6 +46,7 @@
 {{ Html::script('vendor/angular/angular-translate/loader-static-files.js'); }}
 {{ Html::script('vendor/angular/angular-translate/storage-cookie.js'); }}
 {{ Html::script('vendor/angular/angular-translate/storage-local.js'); }}
+{{ Html::script('vendor/jquery/datatables/dataTables.tableTools.min.js'); }}
 
 <!-- App -->
 {{ Html::script('js/app.js'); }}

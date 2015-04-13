@@ -4,11 +4,6 @@
 
 <div class="wrapper-md" ng-init="country_sheetsdata()">
     <div flash-message="5000" ></div>
-<!--    <a href="#/app/marketing_states/create">-->
-<!--        <button class="btn btn-sm btn-primary btn-addon pull-right m-xs">-->
-<!--            <i class="fa fa-plus"></i>Add-->
-<!--        </button>-->
-<!--    </a>-->
 
     <div class="panel panel-default">
 

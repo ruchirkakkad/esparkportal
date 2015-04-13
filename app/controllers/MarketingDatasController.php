@@ -1,10 +1,48 @@
 <?php
 
-class MarketingDatasController extends \BaseController {
+class MarketingDatasController extends \BaseController
+{
 
-    public function getIndexView()
+    public function getIndexOneView()
     {
-        return View::make('marketing_datas.index');
+        return View::make('marketing_datas.index_one');
+    }
+
+    public function getIndexTwoView()
+    {
+        return View::make('marketing_datas.index_two');
+    }
+
+    public function getIndexThreeView()
+    {
+        return View::make('marketing_datas.index_three');
+    }
+
+
+    public function getTimezoneWiseDataView($id)
+    {
+        $id = Helper::simple_decrypt($id);
+        $data1 = MarketingData::leftJoin('marketing_states','marketing_states.marketing_states_id','=','marketing_datas.marketing_states_id')
+                                ->leftJoin('leads_statuses','leads_statuses.leads_statuses_id','=','marketing_datas.leads_statuses_id')
+                                ->where('marketing_states.timezones_id','=',$id)->get();
+        $returndata = [];
+        foreach($data1 as $k => $v)
+        {
+            $id = Helper::simple_encrypt($v->marketing_datas_id);
+            $returndata[$k]['marketing_datas_id'] = $v->marketing_datas_id;
+            $returndata[$k]['owner_name'] = $v->owner_name;
+            $returndata[$k]['company_name'] = $v->company_name;
+            $returndata[$k]['website'] = $v->website;
+            $returndata[$k]['phone'] = $v->phone;
+            $returndata[$k]['email'] = $v->email;
+            $returndata[$k]['leads_statuses_id'] = $v->leads_statuses_id;
+            $returndata[$k]['edit'] = "<a href='#/app/sheets/edit/$id'><button class='btn m-b-xs btn-sm btn-primary'><i class='fa fa-edit'></i></button></a>";
+            $returndata[$k]['delete'] = "<a href='#/app/sheets/delete/$id'><button class='btn btn-sm btn-icon btn-danger'><i class='fa fa-trash-o'></i></button></a>";
+        }
+
+        $data['aaData'] = $returndata;
+
+        return $data;
     }
 
     public function getCreateOneAdd()
@@ -16,13 +54,49 @@ class MarketingDatasController extends \BaseController {
     {
 
         $data['countries'] = MarketingCountry::select(DB::raw('count(marketing_datas.marketing_states_id) as data_count, marketing_countries.*'))
-                        ->leftJoin('marketing_states','marketing_states.marketing_countries_id','=','marketing_countries.marketing_countries_id')
-                        ->leftJoin('marketing_datas','marketing_states.marketing_states_id','=','marketing_datas.marketing_states_id')
-                        ->groupBy('marketing_countries.marketing_countries_id')->get();
+            ->leftJoin('marketing_states', 'marketing_states.marketing_countries_id', '=', 'marketing_countries.marketing_countries_id')
+            ->leftJoin('marketing_datas', 'marketing_states.marketing_states_id', '=', 'marketing_datas.marketing_states_id')
+            ->groupBy('marketing_countries.marketing_countries_id')->get();
 
-        foreach($data['countries'] as $key => $val)
-        {
+        foreach ($data['countries'] as $key => $val) {
             $data['countries'][$key]->marketing_countries_id = Helper::simple_encrypt($data['countries'][$key]->marketing_countries_id);
+        }
+//        $data['categories'] = MarketingCategory::select('marketing_categories_name', 'marketing_categories_id')->get();
+        return json_encode($data);
+    }
+
+    public function postCountriesView()
+    {
+
+        $data['countries'] = MarketingCountry::select(DB::raw('count(marketing_datas.marketing_states_id) as data_count, marketing_countries.*'))
+            ->leftJoin('marketing_states', 'marketing_states.marketing_countries_id', '=', 'marketing_countries.marketing_countries_id')
+            ->leftJoin('marketing_datas', 'marketing_states.marketing_states_id', '=', 'marketing_datas.marketing_states_id')
+            ->groupBy('marketing_countries.marketing_countries_id')->get();
+
+        foreach ($data['countries'] as $key => $val) {
+            $data['countries'][$key]->marketing_countries_id = Helper::simple_encrypt($data['countries'][$key]->marketing_countries_id);
+        }
+//        $data['categories'] = MarketingCategory::select('marketing_categories_name', 'marketing_categories_id')->get();
+        return json_encode($data);
+    }
+
+    public function postTimezonesView($id)
+    {
+        $id = Helper::simple_decrypt($id);
+
+        $data['timezones'] = MarketingState::select(DB::raw('DISTINCT timezones.timezones_name,timezones.timezones_id'))
+            ->leftJoin('timezones', 'timezones.timezones_id', '=', 'marketing_states.timezones_id')
+            ->where('marketing_states.marketing_countries_id', '=', $id)->get();
+
+        foreach ($data['timezones'] as $key => $val) {
+            $time2 = date('Y-m-d H:i:s');
+            $datetimePST = new DateTime($time2);
+            $datetimePST->setTimezone(new DateTimeZone($data['timezones'][$key]->timezones_name));
+            $pst = $datetimePST->format('d-m-Y h:i:s a');
+
+            $data['timezones'][$key]->timezones_id = Helper::simple_encrypt($data['timezones'][$key]->timezones_id);
+            $data['timezones'][$key]->timezones_time = strtotime($pst);
+//            $data['timezones'][$key]->timezones_time = ($pst);
         }
 //        $data['categories'] = MarketingCategory::select('marketing_categories_name', 'marketing_categories_id')->get();
         return json_encode($data);
@@ -43,10 +117,9 @@ class MarketingDatasController extends \BaseController {
 
     public function postStoreAdd()
     {
-        $validation = Validator::make(Input::all(),MarketingData::$rules);
+        $validation = Validator::make(Input::all(), MarketingData::$rules);
 
-        if($validation->fails())
-        {
+        if ($validation->fails()) {
             return json_encode([
                 'code' => 403,
                 'msg' => Config::get('constants.error_record_msg'),

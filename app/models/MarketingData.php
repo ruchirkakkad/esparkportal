@@ -28,4 +28,9 @@ class MarketingData extends \Eloquent {
     {
         return $this->belongsTo('MarketingState');
     }
+
+    public function lead_status()
+    {
+        return $this->belongsTo('LeadsStatus');
+    }
 }

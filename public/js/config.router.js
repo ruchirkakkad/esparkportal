@@ -350,14 +350,36 @@ angular.module('app')
                             }]
                     }
                 })
-                .state('app.sheets.index', {
-                    url: '/index',
-                    templateUrl: 'sheets/index-view',
+                .state('app.marketing_datas.index-one-view', {
+                    url: '/index-one-view',
+                    templateUrl: 'marketing_datas/index-one-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
                         deps: ['uiLoad',
                             function (uiLoad) {
-                                return uiLoad.load(['js/controllers/sheets.js']);
+                                return uiLoad.load(['js/controllers/marketing_datas.js']);
+                            }]
+                    }
+                })
+                .state('app.marketing_datas.index-two-view', {
+                    url: '/index-two-view/{id}',
+                    templateUrl: 'marketing_datas/index-two-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/marketing_datas.js']);
+                            }]
+                    }
+                })
+                .state('app.marketing_datas.index-three-view', {
+                    url: '/index-three-view/{id}',
+                    templateUrl: 'marketing_datas/index-three-view',
+                    controller: "AuthCheckCtrl",
+                    resolve: {
+                        deps: ['uiLoad',
+                            function (uiLoad) {
+                                return uiLoad.load(['js/controllers/marketing_datas.js']);
                             }]
                     }
                 })
