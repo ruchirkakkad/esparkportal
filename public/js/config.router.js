@@ -113,7 +113,7 @@ angular.module('app')
                 })
                 .state('app.modules.delete', {
                     url: '/delete/{id}',
-                    controller: function ($http, $state, $stateParams,Flash) {
+                    controller: function ($http, $state, $stateParams, Flash) {
 
                         $http.post('checkAuthentication', {})
                             .success(function (data) {
@@ -176,7 +176,7 @@ angular.module('app')
                 })
                 .state('app.marketing_countries.delete', {
                     url: '/delete/{id}',
-                    controller: function ($http, $state, $stateParams,Flash) {
+                    controller: function ($http, $state, $stateParams, Flash) {
 
                         $http.post('checkAuthentication', {})
                             .success(function (data) {
@@ -239,7 +239,7 @@ angular.module('app')
                 })
                 .state('app.timezones.delete', {
                     url: '/delete/{id}',
-                    controller: function ($http, $state, $stateParams,Flash) {
+                    controller: function ($http, $state, $stateParams, Flash) {
 
                         $http.post('checkAuthentication', {})
                             .success(function (data) {
@@ -301,7 +301,7 @@ angular.module('app')
                 })
                 .state('app.leads_statuses.delete', {
                     url: '/delete/{id}',
-                    controller: function ($http, $state, $stateParams,Flash) {
+                    controller: function ($http, $state, $stateParams, Flash) {
 
                         $http.post('checkAuthentication', {})
                             .success(function (data) {
@@ -372,14 +372,28 @@ angular.module('app')
                             }]
                     }
                 })
-                .state('app.marketing_datas.index-three-view', {
+                    .state('app.marketing_datas.index-three-view', {
                     url: '/index-three-view/{id}',
                     templateUrl: 'marketing_datas/index-three-view',
                     controller: "AuthCheckCtrl",
                     resolve: {
-                        deps: ['uiLoad',
-                            function (uiLoad) {
-                                return uiLoad.load(['js/controllers/marketing_datas.js']);
+                        deps: ['$ocLazyLoad',
+                            function ($ocLazyLoad) {
+                                return $ocLazyLoad.load({
+                                   files: [
+                                        //'../../../assets/global/plugins/select2/select2.css',
+                                        'vendor/datatables/plugins/bootstrap/dataTables.bootstrap.css',
+                                        'vendor/datatables/extensions/Scroller/css/dataTables.scroller.min.css',
+                                        'vendor/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css',
+
+                                        //'../../../assets/global/plugins/select2/select2.min.js',
+                                        'vendor/datatable.js',
+                                        'vendor/datatables/jquery.dataTables.columnFilter.min.js',
+                                        'vendor/datatables/all.min.js',
+
+                                        'js/controllers/marketing_datas.js'
+                                    ]
+                                });
                             }]
                     }
                 })
@@ -420,7 +434,7 @@ angular.module('app')
                 })
                 .state('app.sheets.delete', {
                     url: '/delete/{id}',
-                    controller: function ($http, $state, $stateParams,Flash) {
+                    controller: function ($http, $state, $stateParams, Flash) {
 
                         $http.post('checkAuthentication', {})
                             .success(function (data) {
@@ -483,7 +497,7 @@ angular.module('app')
                 })
                 .state('app.marketing_categories.delete', {
                     url: '/delete/{id}',
-                    controller: function ($http, $state, $stateParams,Flash) {
+                    controller: function ($http, $state, $stateParams, Flash) {
 
                         $http.post('checkAuthentication', {})
                             .success(function (data) {
@@ -546,7 +560,7 @@ angular.module('app')
                 })
                 .state('app.marketing_states.delete', {
                     url: '/delete/{id}',
-                    controller: function ($http, $state, $stateParams,Flash) {
+                    controller: function ($http, $state, $stateParams, Flash) {
 
                         $http.post('checkAuthentication', {})
                             .success(function (data) {

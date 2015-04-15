@@ -11,7 +11,7 @@
     {{ Html::style('css/font-awesome.min.css') }}
     {{ Html::style('css/simple-line-icons.css') }}
     {{ Html::style('css/font.css') }}
-
+    <link id="ng_load_plugins_before"/>
     {{ Html::style('css/app.css') }}
     {{ Html::style('css/newcss.css') }}
 </head>
@@ -20,18 +20,21 @@
 
 </div>
 
-
+{{ Html::script('vendor/datatable.js'); }}
 <!-- jQuery -->
 {{ Html::script('vendor/jquery/jquery.min.js'); }}
 
 <!-- Angular -->
 {{ Html::script('vendor/angular/angular.js'); }}
 
+
 {{ Html::script('vendor/angular/angular-animate/angular-animate.js'); }}
 {{ Html::script('vendor/angular/angular-cookies/angular-cookies.js'); }}
 {{ Html::script('vendor/angular/angular-resource/angular-resource.js'); }}
 {{ Html::script('vendor/angular/angular-sanitize/angular-sanitize.js'); }}
 {{ Html::script('vendor/angular/angular-touch/angular-touch.js'); }}
+{{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.2/ng-csv.min.js'); }}
+
 <!-- Vendor -->
 {{ Html::script('vendor/angular/angular-ui-router/angular-ui-router.js'); }}
 {{ Html::script('vendor/angular/ngstorage/ngStorage.js'); }}
