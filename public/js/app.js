@@ -11,12 +11,12 @@ angular.module('app', [
     'ngStorage',
     'ui.router',
     'ui.bootstrap',
-
+    'dialogs',
     'ui.load',
     'ui.jq',
     'ui.validate',
     'oc.lazyLoad',
     'flash',
-
+    'datatables',
     'pascalprecht.translate'
 ]);

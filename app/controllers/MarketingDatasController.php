@@ -19,7 +19,7 @@ class MarketingDatasController extends \BaseController
     }
 
 
-    public function postTimezoneWiseDataView($id)
+    public function getTimezoneWiseDataView($id)
     {
         $id = Helper::simple_decrypt($id);
         $data1 = MarketingData::leftJoin('marketing_states', 'marketing_states.marketing_states_id', '=', 'marketing_datas.marketing_states_id')
@@ -34,12 +34,13 @@ class MarketingDatasController extends \BaseController
             $returndata[$k]['website'] = $v->website;
             $returndata[$k]['phone'] = $v->phone;
             $returndata[$k]['email'] = $v->email;
-            $returndata[$k]['leads_statuses_id'] = $v->leads_statuses_id;
-            $returndata[$k]['marketing_datas_id_encrpt'] = $id;
+            $returndata[$k]['leads_statuses_id'] = "<button ng-click='changeStatus()' class='stat' >$v->leads_statuses_name</button>";
+            $returndata[$k]['edit'] = "<a href='#/app/marketing_states/edit/$id'><button class='btn btn-rounded btn-sm btn-icon btn-primary'><i class='fa fa-search-plus'></i></button></a>";
+            $returndata[$k]['delete'] = "<a href='#/app/marketing_states/delete/$id'><button class='btn btn-sm btn-icon btn-danger'><i class='fa fa-edit'></i></button></i></button></a>";
         }
 
         $data['aaData'] = $returndata;
-        $data['lead_status'] = LeadsStatus::select('leads_statuses_name', 'leads_statuses_id')->get();
+//        $data['lead_status'] = LeadsStatus::select('leads_statuses_name', 'leads_statuses_id')->get();
         return $data;
     }
     public function postTimezoneWiseDataFilteredView($id)

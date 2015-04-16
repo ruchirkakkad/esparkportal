@@ -6,14 +6,37 @@
     <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
+    <style>
+    /* Fix for Bootstrap 3 with Angular UI Bootstrap */
+
+    .modal {
+    	display: block;
+    }
+
+    /* Custom dialog/modal headers */
+
+    .dialog-header-error { background-color: #d2322d; }
+    .dialog-header-wait { background-color: #428bca; }
+    .dialog-header-notify { background-color: #eeeeee; }
+    .dialog-header-confirm { background-color: #333333; }
+    	.dialog-header-error span, .dialog-header-error h4,
+    	.dialog-header-wait span, .dialog-header-wait h4,
+    	.dialog-header-confirm span, .dialog-header-confirm h4 { color: #ffffff; }
+
+    /* Ease Display */
+
+    .pad { padding: 25px; }
+    </style>
     {{ HTML::style('css/bootstrap.css') }}
     {{ HTML::style('css/animate.css') }}
     {{ Html::style('css/font-awesome.min.css') }}
     {{ Html::style('css/simple-line-icons.css') }}
     {{ Html::style('css/font.css') }}
-    <link id="ng_load_plugins_before"/>
+
     {{ Html::style('css/app.css') }}
     {{ Html::style('css/newcss.css') }}
+{{--    {{ Html::style('vendor/angular/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.css') }}--}}
+
 </head>
 <body ng-controller="AppCtrl">
 <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':false, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view>
@@ -34,6 +57,13 @@
 {{ Html::script('vendor/angular/angular-sanitize/angular-sanitize.js'); }}
 {{ Html::script('vendor/angular/angular-touch/angular-touch.js'); }}
 {{ Html::script('https://cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.2/ng-csv.min.js'); }}
+<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js" type="text/javascript"></script>
+<script src="http://m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js" type="text/javascript"></script>
+
+
+{{ Html::script('vendor/jquery/datatables/jquery.dataTables.min.js'); }}
+{{ Html::script('vendor/angular/angular-datatables/dist/angular-datatables.min.js'); }}
+
 
 <!-- Vendor -->
 {{ Html::script('vendor/angular/angular-ui-router/angular-ui-router.js'); }}

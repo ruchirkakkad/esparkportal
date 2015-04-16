@@ -7,9 +7,10 @@
         <select ng-model="filter_status" ng-change="filter_data(filter_status)" ng-options="lead.leads_statuses_id as lead.leads_statuses_name for lead in lead_status">
             <option value=''>Select Status</option>
         </select>
-        <button type="submit" ng-click="filter_data(filter_status)" class="btn btn-sm btn-primary">Search</button>
+        <button type="submit" ng-click="changeStatus()" class="btn btn-sm btn-primary">Search</button>
 
         <button type="button" ng-csv="getArray()" csv-header="['ID', 'Owner Name', 'Company Name', 'Website', 'Phone', 'Email', 'Status']" filename="test.csv">Export</button>
+        <a ng-click="changeStatus()">sdfsf</a>
     </div>
 </div>
 <div class="wrapper-md" ng-init="timezone_wise_data()">
@@ -18,10 +19,10 @@
     <div class="panel panel-default">
 
         <div class="panel-heading">
-            <!--            Country :-->
+            <!--Country :-->
         </div>
         <div class="table-responsive">
-            <table id="sample_1" ui-jq="dataTable" class="table table-striped m-b-none">
+            <table id="sample_1" ui-jq="dataTable" ui-options="data.options" class="table table-striped m-b-none">
                 <thead>
                 <tr>
                     <th style="width:5%">ID</th>
@@ -36,41 +37,62 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="data12 in data.aaData ">
-<!--                <tr ng-repeat="data12 in data.aaData | filter : {leads_statuses_id : filter_status}">-->
-                    <td>{{ data12.marketing_datas_id }}</td>
-                    <td>{{ data12.owner_name }}</td>
-                    <td>{{ data12.company_name }}</td>
-                    <td>{{ data12.website }}</td>
-                    <td>{{ data12.phone }}</td>
-                    <td>{{ data12.email }}</td>
-                    <td>
-                        <select ng-model="data12.leads_statuses_id" ng-change="changeStatus(data12.marketing_datas_id_encrpt,data12.leads_statuses_id)" ng-options="lead.leads_statuses_id as lead.leads_statuses_name for lead in lead_status">
-                            <option value="">Select Status</option>
-                        </select>
-                    </td>
-                    <td>
-                        <a href="#/app/sheets/edit/{{ data12.marketing_datas_id_encrpt }}">
-                            <button class="btn btn-rounded btn-sm btn-icon btn-primary"><i class="fa fa-search-plus"></i></button>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="#/app/sheets/delete/{{ data12.marketing_datas_id_encrpt }}">
-                            <button class="btn btn-sm btn-icon btn-danger"><i class="fa fa-edit"></i></button>
-                        </a>
-                    </td>
-                </tr>
                 </tbody>
             </table>
 
         </div>
     </div>
+
+
+    <div ng-controller="WithOptionsCtrl as app">
+        <table datatable="" dt-options="app.dtOptions" dt-column-defs="app.dtColumnDefs" class="table table-striped m-b-none ">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Foo</td>
+                <td>Bar</td>
+            </tr>
+            <tr>
+                <td>123</td>
+                <td>Someone</td>
+                <td>Youknow</td>
+            </tr>
+            <tr>
+                <td>987</td>
+                <td>Iamout</td>
+                <td ng-click="changeStatus()">Ofinspiration</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
+
+
 <script>
-    $(window).load(function () {
+    $(document).ready(function () {
         TableAdvanced.init();
-//        timezone_wise_data();
     });
+    app.controller('WithOptionsCtrl', WithOptionsCtrl);
+
+    function WithOptionsCtrl(DTOptionsBuilder, DTColumnDefBuilder) {
+        var vm = this;
+        vm.dtOptions = DTOptionsBuilder.newOptions()
+            .withPaginationType('full_numbers')
+            .withDisplayLength(3);
+//            .withDOM('pitrfl');
+        vm.dtColumnDefs = [
+            DTColumnDefBuilder.newColumnDef(0),
+            DTColumnDefBuilder.newColumnDef(1),
+            DTColumnDefBuilder.newColumnDef(2).notSortable()
+        ];
+    }
 
 </script>
